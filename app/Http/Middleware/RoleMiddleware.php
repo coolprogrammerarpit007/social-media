@@ -23,6 +23,6 @@ class RoleMiddleware
             ],403);
         }
 
-        return next($request);
+        return $next($request);
     }
 }

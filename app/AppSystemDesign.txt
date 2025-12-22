@@ -1,0 +1,17 @@
+Tables to Mentally Plan (Only names)
+
+users
+
+profiles
+
+posts
+
+comments
+
+likes
+
+follows
+
+notifications
+
+media

@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable,HasUuids,HasApiTokens;
+    use HasFactory, Notifiable,HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +26,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_login_at'
+
     ];
 
     /**
@@ -46,23 +49,18 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'last_login_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
 
 
-    public function posts()
+    public function roles()
     {
-        return $this->hasMany(Post::class,'user_id','id');
+        return $this->belongsToMany(Role::class);
     }
 
-    public function comments()
-    {
-        return $this->hasMany(Comment::class,'user_id','id');
-    }
 
-    public function likes()
-    {
-        return $this->hasMany(Like::class,'user_id','id');
-    }
+
+
 }

@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->uuid('id')->primary()->unique();
-            $table->foreignUlid('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignUlid('post_id')->constrained('posts')->cascadeOnDelete();
-            $table->string('comment');
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->default('admin');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('roles');
     }
 };

@@ -21,6 +21,20 @@ Route::prefix('v1')->group(function(){
 });
 
 
-Route::prefix('v1')->middleware(['auth:sanctum','role:user'])->group(function(){
-    Route::get('/user/profile/{username}',[ProfileController::class,'show']);
+
+
+// ************************* Profile API Routes ***************************************
+
+
+Route::prefix('v1')->middleware(['auth:sanctum','role:user'])->group(function()
+{
+    Route::get('/profile/me',[ProfileController::class,'me']);
+    Route::put('/profile',[ProfileController::class,'update']);
 });
+
+
+// Public Profile
+
+    Route::get('/profiles/{username}',[ProfileController::class,'profile']);
+
+// *************************************************************************************

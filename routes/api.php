@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\CommentController;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use Illuminate\Http\Request;
@@ -50,4 +51,13 @@ Route::prefix('v1')->middleware(['auth:sanctum','role:user'])->group(function(){
     Route::delete('/posts',[PostController::class,'destroy']);
     Route::get('/posts/{id}',[PostController::class,'show']);
     Route::get('/posts',[PostController::class,'index']);
+
+
+    // Comment API
+    Route::post('/comments',[CommentController::class,'store']);
+    Route::put('/comments/{id}',[CommentController::class,'update']);
+    Route::get('/comments/{id}',[CommentController::class,'index']);
 });
+
+
+

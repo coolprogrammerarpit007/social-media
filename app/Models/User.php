@@ -65,6 +65,11 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function post()
+    {
+        return $this->hasOne(Post::class);
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class,'user_id','id');
@@ -74,6 +79,11 @@ class User extends Authenticatable
     public function hasRole(string $role)
     {
         return $this->roles()->where('name',$role)->exists();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'user_id','id');
     }
 
 

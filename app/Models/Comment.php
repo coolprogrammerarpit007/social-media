@@ -49,4 +49,10 @@ class Comment extends Model
     {
         return $this->hasMany(Comment::class,'parent_id')->whereNull('deleted_at');
     }
+
+    public function likes()
+    {
+        return $this->morphMany(Like::class,'likeable');
+    }
+
 }

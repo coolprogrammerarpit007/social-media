@@ -53,7 +53,9 @@ class Profile extends Model
     public static function getPublicProfile($username)
     {
 
-        $data =  static::where('user_name',$username)->where('is_public',1)->first(['id','full_name','dob','bio','avtar']);
+        $data =  static::with(['user'=>function($query){
+            $query->select('id','email')->withCount('followers');
+        }])->where('user_name',$username)->where('is_public',1)->first(['id','full_name','dob','bio','avtar','user_id']);
 
         return $data;
     }

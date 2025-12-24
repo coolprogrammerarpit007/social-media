@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CommentController;
+use App\Http\Controllers\Api\V1\FollowController;
 use App\Http\Controllers\Api\V1\LikeController;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\ProfileController;
@@ -59,6 +60,10 @@ Route::prefix('v1')->middleware(['auth:sanctum','role:user'])->group(function(){
     Route::put('/comments/{id}',[CommentController::class,'update']);
     Route::get('/comments/{id}',[CommentController::class,'index']);
     Route::post('/likes',[LikeController::class,'toggle']);
+
+    // Follow API
+
+    Route::post('/follow',[FollowController::class,'toggle']);
 });
 
 

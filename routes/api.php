@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CommentController;
+use App\Http\Controllers\Api\V1\FeedController;
 use App\Http\Controllers\Api\V1\FollowController;
 use App\Http\Controllers\Api\V1\LikeController;
 use App\Http\Controllers\Api\V1\PostController;
@@ -64,6 +65,9 @@ Route::prefix('v1')->middleware(['auth:sanctum','role:user'])->group(function(){
     // Follow API
 
     Route::post('/follow',[FollowController::class,'toggle']);
+
+    // Post Feed API
+    Route::get('/post-feeds',[FeedController::class,'feeds']);
 });
 
 
